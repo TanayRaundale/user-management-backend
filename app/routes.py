@@ -8,13 +8,13 @@ from flask import Blueprint
 @main.route('/submit', methods=['POST'])
 def submit():
     data = request.get_json()
-    username = data.get('name')
+    username = data.get('username')
     email = data.get('email')
 
     try:
         conn,cursor = get_db_connection()
 
-        query = "INSERT INTO users (name, email) VALUES (%s, %s)"
+        query = "INSERT INTO users (username, email) VALUES (%s, %s)"
         cursor.execute(query, (username, email))
         conn.commit()
         cursor.close()
